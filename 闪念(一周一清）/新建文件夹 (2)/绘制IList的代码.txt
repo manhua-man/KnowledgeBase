@@ -1,0 +1,110 @@
+case IList v://绘制列表
+                            {
+                                if (type.IsGenericType && type.GenericTypeArguments.Length == 1)
+                                {
+                                    Type subType = type.GenericTypeArguments[0];
+
+                                    using (var lay2 = new EditorGUILayout.VerticalScope("FrameBox"))
+                                    {
+                                        if (subType.IsClass || subType.IsValueType)
+                                        {
+                                            EditorGUIUtility.labelWidth = CalcLabelWidth(title);
+                                            EditorGUILayout.BeginHorizontal();
+                                            int cnt = EditorGUILayout.IntField(title, v.Count);//当前个数
+                                            if (GUILayout.Button("+", GUILayout.Width(40)))
+                                            {
+                                                cnt++;
+                                                GUI.FocusControl(null);
+                                            }
+                                            EditorGUILayout.EndHorizontal();
+                                            EditorGUIUtility.labelWidth = oldLabelWidth;
+
+                                            int diff = cnt - v.Count;
+
+                                            while (diff < 0)
+                                            {
+                                                v.RemoveAt(v.Count - 1);
+                                                diff++;
+                                            }
+
+                                            SelectChildrenClassAttribute attr = GetTargetAttr<SelectChildrenClassAttribute>();
+                                            //可以判断v有没有那个选择参数，有的话就用selecter，否则就正常加
+                                            if(attr==null)
+                                            {
+                                                while (diff > 0)
+                                                {
+                                                    object subObj = TypeUtility.CreateInstance(subType);
+                                                    v.Add(subObj);
+                                                    diff--;
+                                                }                                                        
+                                            }
+                                            else
+                                            {
+                                                if(diff>0)
+                                                {
+                                                    List<Type> types;
+                                                    //获取使用该T Attribute的类型
+                                                    if (attr.type != null)
+                                                    {
+                                                        types = TypeCache.GetTypesDerivedFrom(attr.type).ToList();//AssemblyUtility.FindAllTypeWithAttr<T>();
+                                                    }
+                                                    else
+                                                    {
+                                                        types = TypeCache.GetTypesDerivedFrom(subType).ToList();//AssemblyUtility.FindAllTypeWithAttr<T>();
+                                                    }
+                                                    //拿到名称列表(名称|空间)
+                                                    List<string> typeNames = types.Select(t => $"{t.GetSimpleName()} | {t.Namespace}").ToList();
+                                                    //显示列表，并添加点击回调
+                                                    SelectListWindow.Show(typeNames, t => {
+                                                        //点击时，使用反射创建
+                                                        for (int i = 0; i < diff; i++)
+                                                        {
+                                                            object newobj = Activator.CreateInstance(types[t]);
+                                                            v.Add(newobj);
+                                                        }
+                                                    });
+                                                }                                                
+                                            }                                                                                            
+                                            EditorGUI.indentLevel += 1;
+                                            //for (int i = 0; i < cnt; i++)
+                                            for (int i = 0; i < v.Count; i++)
+                                            {
+                                                using (var lay3 = new EditorGUILayout.VerticalScope("FrameBox"))
+                                                {
+                                                    v[i] = DrawObject(new GUIContent($"{i}"), v[i], subType, attrs);
+
+                                                    using (var lay4 = new EditorGUILayout.HorizontalScope())
+                                                    {
+                                                        if (GUILayout.Button("↑") && i > 0)
+                                                        {
+                                                            object swap = v[i - 1];
+                                                            v[i - 1] = v[i];
+                                                            v[i] = swap;
+                                                        }
+                                                        if (GUILayout.Button("↓") && i < cnt - 1)
+                                                        {
+                                                            object swap = v[i + 1];
+                                                            v[i + 1] = v[i];
+                                                            v[i] = swap;
+                                                        }
+                                                        if (GUILayout.Button("x"))
+                                                        {
+                                                            v.RemoveAt(i);
+                                                            i--;
+                                                            cnt--;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            EditorGUI.indentLevel -= 1;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    EditorGUILayout.LabelField($"不支持 {type} 类型");
+                                }
+
+                                obj = v;
+                            }
+                            break;

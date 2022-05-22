@@ -1,0 +1,99 @@
+1，什么是设计模式 设计模式的作用
+	解决同一种类型的问题
+	使用设计模式可以让代码结构更加清晰
+	https://www.zhihu.com/question/19558521?utm_campaign=rss&utm_medium=rss&utm_source=rss&utm_content=title
+	
+2，面向对象设计中常见的设计原则
+	单一职责原则
+	开-闭原则
+	里氏替换原则
+	依赖倒置原则
+	接口隔离原则
+	最少知识原则（迪米特法则）
+	少用继承多用组合（合成复用）
+	
+	上述原则的作用：让自己设计实现出来的软件系统更加稳定，容易维护，并具有一致性。
+	资料
+	http://blog.csdn.net/qiulongtianshi/article/details/7570021
+	https://wenku.baidu.com/view/90233639c850ad02de8041f0.html
+
+3，设计模式书籍（卓越亚马逊和当当）
+	《设计模式 可复用面向对象软件的基础》
+	《Head First 设计模式（中文版）》
+	《设计模式与完美游戏开发》
+4，画图 draw.io process.on
+	
+5，脚本和游戏物体分离开发
+
+6，修改VS的默认模板
+	64位环境，VS2013，则我可以找到这个位置：
+	D:\Program Files (x86)\visual studio2013\Common7\IDE\ItemTemplatesCache\CSharp\Code\2052\WebClass
+	D:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\ItemTemplatesCache\CSharp\Code\2052\Class
+	D:\Program Files\Microsoft Visual Studio 12.0\Common7\IDE\ItemTemplatesCache\CSharp\Code\2052\Class
+	
+状态模式：
+http://www.cnblogs.com/wangjq/archive/2012/07/16/2593485.html
+
+外观模式：
+http://blog.csdn.net/lovelion/article/details/8258121
+
+单例模式：
+http://blog.csdn.net/carson_ho/article/details/52223097
+http://blog.csdn.net/iblade/article/details/51107308
+
+中介者模式
+http://www.cnblogs.com/BeyondAnyTime/archive/2012/08/30/2663922.html
+
+桥接模式
+http://blog.csdn.net/cooldragon/article/details/52173915
+
+策略模式
+http://www.uml.org.cn/sjms/201009092.asp
+http://blog.csdn.net/hguisu/article/details/7558249
+
+模板方法模式
+http://blog.csdn.net/lovelion/article/details/8299794
+http://meigesir.iteye.com/blog/1506484
+
+状态模式之AI 有限状态机
+http://wiki.unity3d.com/index.php/Finite_State_Machine
+
+工厂模式（简单工厂，工厂方法，抽象工厂）
+http://blog.csdn.net/jason0539/article/details/23020989
+http://blog.csdn.net/jason0539/article/details/44976775
+
+建造者模式
+http://www.cnblogs.com/BeyondAnyTime/archive/2012/07/19/2599980.html
+
+享元模式
+http://blog.csdn.net/ai92/article/details/224598
+http://www.runoob.com/design-pattern/flyweight-pattern.html
+
+组合模式
+http://blog.csdn.net/hfmbook/article/details/7693069
+
+命令模式
+http://www.cnblogs.com/wangjq/archive/2012/07/11/2585930.html
+
+责任链模式
+http://www.tuicool.com/articles/RJvARj
+
+观察者模式
+http://lavasoft.blog.51cto.com/62575/201617/
+
+备忘录模式
+http://www.cnblogs.com/BeyondAnyTime/archive/2012/08/05/2623667.html
+
+适配器模式
+http://blog.csdn.net/jason0539/article/details/22468457
+http://www.cnblogs.com/wangjq/archive/2012/07/09/2582485.html
+
+装饰模式
+http://blog.csdn.net/a19881029/article/details/8980503
+
+
+
+
+
+
+
