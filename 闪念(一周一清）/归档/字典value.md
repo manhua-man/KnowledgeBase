@@ -1,0 +1,3 @@
+animation录制帧动画加透明帧
+
+直接改alpha

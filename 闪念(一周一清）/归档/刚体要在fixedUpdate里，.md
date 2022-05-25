@@ -1,0 +1,3 @@
+刚体要在fixedUpdate里，
+
+相机在yield waitForfixedUpdate获取人物位置
